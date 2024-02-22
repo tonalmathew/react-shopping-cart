@@ -6,6 +6,7 @@ import { addToCart, removeFromCart } from '../../store/cartSlice';
 export default function Product() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.items);
+  const cart = useSelector((state) => state.cart);
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
@@ -33,7 +34,7 @@ export default function Product() {
                 <p className="text-sm font-bold text-neutral-500 mt-2">Rating: {product.rating.rate}</p>
               </div>
             </div>
-            {product.inCart ? (
+            {cart.some(item => item.id === product.id) ? (
               <button className="px-3 py-3 text-white bg-red-500 hover:bg-red-700 rounded-md text-sm" onClick={() => handleRemoveFromCart(product)}>
                 Remove from Cart
               </button>

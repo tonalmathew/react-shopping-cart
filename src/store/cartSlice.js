@@ -7,15 +7,7 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       console.log(state, action)
       const productToAdd = action.payload;
-      const index = state.findIndex(item => item.id === productToAdd.id);
-
-      if (index !== -1) {
-        return state.map(item =>
-          item.id === productToAdd.id ? { ...item, inCart: true } : item
-        );
-      } else {
-        return [...state, { ...productToAdd, inCart: true }];
-      }
+      state.push(productToAdd)
     },
     removeFromCart: (state, action) => {
       console.log(state, action)
